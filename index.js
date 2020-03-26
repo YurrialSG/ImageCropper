@@ -32,12 +32,12 @@ function processImage() {
     guides: false,
     highlight: false,
     cropBoxMovable: false,
-    aspectRatio: 16 / 9,
+    aspectRatio: 20 / 10, //define o tamanho de área onde vai ser recortada
     zoom: function (e) { // function to allow maxZoom to max size
-        if (e.ratio > 1) {
-            e.preventDefault();
-            $(this).cropper('zoomTo', 1);
-        }
+      if (e.ratio > 1) {
+        e.preventDefault();
+        $(this).cropper('zoomTo', 1);
+      }
     },
 
     crop(event) {
@@ -56,8 +56,43 @@ function cropImage() {
   const img = document.createElement("img");
   img.src = imgurl;
   document.getElementById("cropResult").appendChild(img);
+  saveImage()
 }
 
-function mZoom() {
+function saveImage() {
 
+  cropper.getCroppedCanvas();
+
+  cropper.getCroppedCanvas({
+    width: 160,
+    height: 90,
+    minWidth: 256,
+    minHeight: 256,
+    maxWidth: 4096,
+    maxHeight: 4096,
+    fillColor: '#fff',
+    imageSmoothingEnabled: false,
+    imageSmoothingQuality: 'high',
+  });
+
+  cropper.getCroppedCanvas().toBlob((blob) => {
+    const formData = new FormData();
+
+    // Pass the image file name as the third parameter if necessary.
+    formData.append('croppedImage', blob/*, 'example.png' */);
+
+    // Use `jQuery.ajax` method for example
+    $.ajax('/upload.php', {
+      method: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success() {
+        console.log('Upload success');
+      },
+      error() {
+        console.log('Upload error');
+      },
+    });
+  }/*, 'image/png' */);
 }
