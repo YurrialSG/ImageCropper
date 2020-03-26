@@ -1,0 +1,30 @@
+body {
+  align-items: center;
+  text-align: center;
+}
+
+.loadImage {
+  overflow: hidden;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+#uploadedImage {
+  width: 100%;
+  height: 400px;
+}
+
+#croppedImage {
+  overflow: hidden;
+  width: 500px;
+  height: 300px;
+}
+
+#cropResult {
+  overflow: hidden;
+  width: auto;
+  height: auto;
+}
