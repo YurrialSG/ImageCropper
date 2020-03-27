@@ -59,47 +59,17 @@ function cropImage() {
   const img = document.createElement("img");
   img.src = imgurl;
   document.getElementById("cropResult").appendChild(img);
-
-
   saveImage()
 }
 
 function saveImage() {
 
-  cropper.getCroppedCanvas();
+  const imgurl = cropper.getCroppedCanvas().toDataURL();
 
-  cropper.getCroppedCanvas({
-    width: 160,
-    height: 90,
-    minWidth: 256,
-    minHeight: 256,
-    maxWidth: 4096,
-    maxHeight: 4096,
-    fillColor: '#fff',
-    imageSmoothingEnabled: false,
-    imageSmoothingQuality: 'high',
-  });
-
-  cropper.getCroppedCanvas().toBlob((blob) => {
-    const formData = new FormData();
-
-    // Pass the image file name as the third parameter if necessary.
-    formData.append('croppedImage', blob/*, 'example.png' */);
-
-    // Use `jQuery.ajax` method for example
-    console.log("aki")
-    $.ajax({
-      url: 'upload.php',
-      method: 'POST',
-      data: formData,
-      processData: false,
-      contentType: false,
-      success() {
-        console.log('Upload success');
-      },
-      error() {
-        console.log('Upload error');
-      },
-    });
-  }/*, 'image/png' */);
+  var a = document.createElement('a');
+  a.href = imgurl;
+  a.download = "favicon.png";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
