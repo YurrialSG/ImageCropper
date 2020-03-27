@@ -14,13 +14,13 @@ body {
 
 #uploadedImage {
   width: 100%;
-  height: 400px;
+  height: 300px;
 }
 
 #croppedImage {
   overflow: hidden;
-  width: 500px;
-  height: 300px;
+  width: 400px;
+  height: 200px;
 }
 
 #cropResult {
