@@ -1,7 +1,7 @@
 <?php
 
-// $file = $_FILES['croppedImage'];
-// echo "FILE: " + $file;
+$file = $_FILES['croppedImage'];
+echo "FILE: " + $file;
 
 $filename = $_POST['croppedImage'];
 $img = $_POST['pngimageData'];

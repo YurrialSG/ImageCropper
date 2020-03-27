@@ -41,10 +41,13 @@ function processImage() {
     },
 
     crop(event) {
-      // console.log(
-      //   Math.round(event.detail.width),
-      //   Math.round(event.detail.height)
-      // );
+      // console.log(event.detail.x);
+      // console.log(event.detail.y);
+      // console.log(event.detail.width);
+      // console.log(event.detail.height);
+      // console.log(event.detail.rotate);
+      // console.log(event.detail.scaleX);
+      // console.log(event.detail.scaleY);
       const canvas = this.cropper.getCroppedCanvas();
       croppedImage.src = canvas.toDataURL("image/png");
     }
@@ -56,6 +59,8 @@ function cropImage() {
   const img = document.createElement("img");
   img.src = imgurl;
   document.getElementById("cropResult").appendChild(img);
+
+
   saveImage()
 }
 
@@ -82,7 +87,9 @@ function saveImage() {
     formData.append('croppedImage', blob/*, 'example.png' */);
 
     // Use `jQuery.ajax` method for example
-    $.ajax('/upload.php', {
+    console.log("aki")
+    $.ajax({
+      url: 'upload.php',
       method: 'POST',
       data: formData,
       processData: false,
